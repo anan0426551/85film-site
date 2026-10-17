@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>视频播放 Demo - 85film-site</title>
+  <style>
+    body{font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial;line-height:1.6;margin:0;padding:24px;background:#f7f7f8;color:#222}
+    .container{max-width:960px;margin:0 auto}
+    h1{font-size:20px;margin:0 0 12px}
+    p{margin:8px 0 16px;color:#444}
+    .player{background:#000;display:flex;align-items:center;justify-content:center;padding:12px;border-radius:8px}
+    video{width:100%;height:auto;max-height:70vh;border-radius:6px}
+    .note{font-size:13px;color:#666;margin-top:8px}
+    .actions{margin-top:14px}
+    a.button{display:inline-block;padding:8px 12px;background:#0366d6;color:#fff;text-decoration:none;border-radius:6px;margin-right:8px}
+    @media (max-width:520px){body{padding:12px}h1{font-size:18px}}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>视频播放 Demo</h1>
+    <p>演示如何在网页中使用 HTML5 的 &lt;video&gt; 标签播放仓库里的视频文件（videos/视频1.mp4）。此页直接使用 GitHub raw 链接加载视频，适合快速测试。</p>
+
+    <div class="player">
+      <video id="demoVideo" controls playsinline preload="metadata" poster="" crossorigin="anonymous">
+        <source src="https://raw.githubusercontent.com/anan0426551/85film-site/main/videos/%E8%A7%86%E9%A2%911.mp4" type="video/mp4">
+        您的浏览器不支持 HTML5 video 标签，请升级浏览器或使用兼容的浏览器播放此视频。
+      </video>
+    </div>
+
+    <div class="note">
+      注意：
+      <ul>
+        <li>GitHub raw 链接适合测试，但不是高性能的媒体托管方案。若要上线使用，建议通过 GitHub Pages、CDN 或自己的静态文件服务器托管视频文件。</li>
+        <li>若需要自动播放，请确保加上 muted（静音），否则大多数浏览器会阻止自动播放。</li>
+        <li>若要兼容更多浏览器，可额外提供 WebM 等格式作为回退。</li>
+      </ul>
+    </div>
+
+    <div class="actions">
+      <a class="button" href="https://raw.githubusercontent.com/anan0426551/85film-site/main/videos/%E8%A7%86%E9%A2%911.mp4" target="_blank" rel="noopener">在新标签页打开视频 (raw)</a>
+      <a class="button" href="https://github.com/anan0426551/85film-site/blob/main/videos/%E8%A7%86%E9%A2%911.mp4" target="_blank" rel="noopener">在 GitHub 上查看文件</a>
+    </div>
+
+    <script>
+      // 小脚本：在移动网络上先用 metadata 预加载，然后当用户点击播放时再加载全部。
+      (function(){
+        var v = document.getElementById('demoVideo');
+        // 如果浏览器支持 canPlayType，可以做更复杂处理
+        // 示例：用户点击后打印信息
+        v.addEventListener('play', function(){
+          console.log('用户开始播放，视频 src=', v.currentSrc);
+        });
+      })();
+    </script>
+  </div>
+</body>
+</html>
